@@ -1,7 +1,9 @@
 package iotmaker_types
 
 import (
-	pwb "github.com/helmutkemper/iotmaker.platform.webbrowser"
+	pwbCanvas "github.com/helmutkemper/iotmaker.platform.webbrowser/canvas"
 )
 
-type Canvas pwb.Canvas
+type Canvas struct {
+	Browser pwbCanvas.Canvas
+}
