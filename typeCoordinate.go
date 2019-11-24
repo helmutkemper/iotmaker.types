@@ -10,36 +10,32 @@ type Coordinate struct {
 	DensityValue  float64
 }
 
-func (el *Coordinate) Set(value int) {
+func (el *Coordinate) adjustDensity() {
 	if el.DensityFactor == 0 {
 		el.DensityFactor = 1
 	}
 
-	el.OriginalValue = value
 	el.DensityValue = float64(el.OriginalValue) * el.DensityFactor
+}
+
+func (el *Coordinate) Set(value int) {
+	el.OriginalValue = value
+	el.adjustDensity()
 }
 
 func (el *Coordinate) Add(value int) {
-	if el.DensityFactor == 0 {
-		el.DensityFactor = 1
-	}
-
 	el.OriginalValue += value
-	el.DensityValue = float64(el.OriginalValue) * el.DensityFactor
+	el.adjustDensity()
 }
 
 func (el *Coordinate) Sub(value int) {
-	if el.DensityFactor == 0 {
-		el.DensityFactor = 1
-	}
-
 	el.OriginalValue -= value
-	el.DensityValue = float64(el.OriginalValue) * el.DensityFactor
+	el.adjustDensity()
 }
 
 func (el *Coordinate) SetDensityFactor(value float64) {
 	el.DensityFactor = value
-	el.DensityValue = float64(el.OriginalValue) * el.DensityFactor
+	el.adjustDensity()
 }
 
 func (el Coordinate) Int() int {
